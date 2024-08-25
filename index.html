@@ -5,27 +5,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>METAR Viewer</title>
+    <title>Visualizador de METAR</title>
     <link rel="stylesheet" href="./style.css">
+    <script defer src="./scripts.js"></script>
 </head>
+
 <body>
-    <h1>METAR Viewer</h1>
-    <label for="icaoInput">Digite o código ICAO do aeroporto:</label>
-    <input type="text" id="icaoInput" placeholder="Ex: SBGR"><br>
-    <button id="fetchMetar">Obter METAR</button>
-    
+    <h1>Visualizador de METAR</h1>
+    <label for="icao">Digite o código ICAO do aeroporto:</label>
+    <input type="text" id="icao" placeholder="Ex: SBCT"><br>
+    <button id="fetchMetar">Mostrar METAR</button>
+    <button id="translateMetar" style="display: none;">Traduzir METAR</button>
+
+    <!-- Output section -->
     <h2>METAR:</h2>
     <div id="metar-output"></div>
 
-    <button id="translateMetar">Traduzir METAR</button>
+    <div id="translated-container" style="display: none;">
+        <h2>Tradução METAR:</h2>
+        <div id="translated-output"></div><br><br>
+    </div>
 
-    <h2>Tradução:</h2>
-    <div id="translated-output"></div>
+    <!-- Seção de Frequência de Rádio Amadora -->
+    <audio id="radioPlayer" autoplay>
+        <source src="http://d.liveatc.net/sbfz4" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
 
     <footer>
-        <p>&copy; 2024 CearáBytes. Todos os direitos reservados.</p>
+        &copy; 2024 - Visualizador de METAR
     </footer>
-
-    <script src="./metar.mjs"></script>
 </body>
 </html>

@@ -1,27 +1,28 @@
+const apiKey = 'Wb6bHGDnFYz2amm0hyHv7kl-MTiEChkrSyYOk1_xyWk'; // Substitua com sua chave de API
 
-
-document.getElementById('fetchMetar').addEventListener('click', () => {
-    const icaoCode = document.getElementById('icaoInput').value.toUpperCase();
-    if (icaoCode) {
-        fetch(`http://localhost:3000/metar/${icaoCode}`)
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('metar-output').textContent = data;
-                document.getElementById('translateMetar').style.display = 'block'; // Exibe o botão de tradução
-            })
-            .catch(error => {
-                console.error('Erro ao buscar METAR:', error);
-                document.getElementById('metar-output').textContent = 'Erro ao buscar METAR.';
-            });
-    } else {
-        alert('Por favor, insira um código ICAO.');
+// Função para buscar e exibir o METAR
+document.getElementById('fetchMetar').addEventListener('click', async () => {
+    const icaoCode = document.getElementById('icao').value.trim();
+    
+    // Verificar se o campo ICAO está vazio
+    if (!icaoCode) {
+        alert('Digite o ICAO do aeroporto');
+        return;
     }
-});
 
-document.getElementById('translateMetar').addEventListener('click', () => {
-    const metar = document.getElementById('metar-output').textContent;
-    const translation = translateMetar(metar);
-    document.getElementById('translated-output').textContent = translation;
+    try {
+        const response = await fetch(`https://avwx.rest/api/metar/${icaoCode}`, {
+            headers: {
+                'Authorization': `BEARER ${apiKey}`
+            }
+        });
+        const data = await response.json();
+        document.getElementById('metar-output').innerText = `METAR: ${data.raw}`;
+        document.getElementById('translateMetar').style.display = 'block';
+    } catch (error) {
+        document.getElementById('metar-output').innerText = 'Erro ao buscar METAR';
+        document.getElementById('translateMetar').style.display = 'none';
+    }
 });
 
 // Função para traduzir o METAR
@@ -98,3 +99,36 @@ function translateMetar(metar) {
 
     return translation.length > 0 ? translation.join(' ') : 'Tradução não disponível.';
 }
+
+// Função para traduzir o METAR ao clicar no botão
+document.getElementById('translateMetar').addEventListener('click', async () => {
+    const icaoCode = document.getElementById('icao').value.trim();
+    
+    if (icaoCode) {
+        try {
+            const response = await fetch(`https://avwx.rest/api/metar/${icaoCode}`, {
+                headers: {
+                    'Authorization': `BEARER ${apiKey}`
+                }
+            });
+            const data = await response.json();
+
+            // Formata a tradução com todas as informações disponíveis
+            const translation = translateMetar(data.raw);
+            
+            document.getElementById('translated-output').innerText = translation.trim();
+            document.getElementById('translated-container').style.display = 'block'; // Mostrar a caixa de tradução
+        } catch (error) {
+            document.getElementById('translated-output').innerText = 'Erro ao traduzir METAR';
+        }
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const radioPlayer = document.getElementById('radioPlayer');
+    if (radioPlayer) {
+        radioPlayer.play().catch(error => {
+            console.error('Não foi possível iniciar a reprodução do áudio:', error);
+        });
+    }
+});

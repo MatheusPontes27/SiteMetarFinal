@@ -98,14 +98,33 @@ h2 {
     background-color: #218838;
 }
 
+/* Estilo do footer */
 footer {
     text-align: center;
-    margin: 0; /* Remova a margem para evitar espaçamentos indesejados */
+    margin: 0;
     padding: 7px;
     background: #0066b9;
     color: #fff;
     border-radius: 5px;
-    width: 100%; /* Garante que o footer ocupe toda a largura disponível */
-    position: fixed; /* Fixe o footer na parte inferior da página */
-    bottom: 0; /* Alinha o footer à parte inferior da página */
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+/* Estilo para o player de rádio */
+#radioPlayer {
+    display: none;
+}
+
+
+.audio-controls {
+    width: 200px; /* Ajuste o tamanho conforme necessário */
+    height: auto;
+}
+
+/* Ajustes para dispositivos móveis (iPhone X) */
+@media (max-width: 768px) {
+    body {
+        font-size: 10px; /* Reduzir tamanho da fonte para telas menores */
+    }
 }
