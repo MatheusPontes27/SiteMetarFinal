@@ -1,0 +1,31 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>METAR Viewer</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h1>METAR Viewer</h1>
+    <label for="icaoInput">Digite o código ICAO do aeroporto:</label>
+    <input type="text" id="icaoInput" placeholder="Ex: SBGR"><br>
+    <button id="fetchMetar">Obter METAR</button>
+    
+    <h2>METAR:</h2>
+    <div id="metar-output"></div>
+
+    <button id="translateMetar">Traduzir METAR</button>
+
+    <h2>Tradução:</h2>
+    <div id="translated-output"></div>
+
+    <footer>
+        <p>&copy; 2024 CearáBytes. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="./metar.mjs"></script>
+</body>
+</html>
