@@ -107,7 +107,7 @@ footer {
     color: #fff;
     border-radius: 5px;
     width: 100%;
-    position: fixed;
+    position: flex;
     bottom: 0;
 }
 
