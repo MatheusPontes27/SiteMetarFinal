@@ -98,16 +98,21 @@ h2 {
     background-color: #218838;
 }
 
+#translated-container {
+    margin-bottom: 150px; /* Ajuste conforme necessário */
+}
+
 /* Estilo do footer */
 footer {
     text-align: center;
     margin: 0;
+    margin: auto;
     padding: 7px;
     background: #0066b9;
     color: #fff;
     border-radius: 5px;
     width: 100%;
-    position: flex;
+    position: fixed;
     bottom: 0;
 }
 
@@ -115,7 +120,6 @@ footer {
 #radioPlayer {
     display: none;
 }
-
 
 .audio-controls {
     width: 200px; /* Ajuste o tamanho conforme necessário */
